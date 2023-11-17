@@ -68,6 +68,9 @@ public class ApiClient {
     random = new Random();
     httpClient = config.getHttpClient();
     bodyLogger = new BodyLogger(mapper, 1024, debugTruncateBytes);
+    if (config.getProductUserAgent() != null) {
+      UserAgent.withProduct(config.getProductUserAgent(), config.getProductVersion());
+    }
     this.timer = timer;
   }
 
@@ -338,5 +341,9 @@ public class ApiClient {
       return null;
     }
     return mapper.writeValueAsString(body);
+  }
+
+  private String nullToEmpty(String value) {
+    return value != null ? value : "";
   }
 }

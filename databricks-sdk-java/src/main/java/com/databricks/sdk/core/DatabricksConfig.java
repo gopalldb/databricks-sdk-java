@@ -139,6 +139,12 @@ public class DatabricksConfig {
   @ConfigAttribute(value = "rate_limit", env = "DATABRICKS_RATE_LIMIT")
   private Integer rateLimit;
 
+  /** Product identifier to be included as part of user agent */
+  private String productUserAgent = null;
+
+  /** Product version to be included as part of user agent */
+  private String productVersion = null;
+
   private volatile boolean resolved;
   private HeaderFactory headerFactory;
 
@@ -289,6 +295,24 @@ public class DatabricksConfig {
   public DatabricksConfig setClientSecret(String clientSecret) {
     this.clientSecret = clientSecret;
     return this;
+  }
+
+  public DatabricksConfig setProductUserAgent(String productUserAgent) {
+    this.productUserAgent = productUserAgent;
+    return this;
+  }
+
+  public String getProductUserAgent() {
+    return productUserAgent;
+  }
+
+  public DatabricksConfig setProductVersion(String productVersion) {
+    this.productVersion = productVersion;
+    return this;
+  }
+
+  public String getProductVersion() {
+    return productVersion;
   }
 
   public String getProfile() {
